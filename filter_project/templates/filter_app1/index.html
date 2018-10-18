@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>You Got Crap 2 Do</title>
+</head>
+<body>
+{% load app_filters %}
+
+
+<h1>Stuff I need To Do!</h1>
+{% for todo in todos %}
+<p>
+<div class='todo'>
+    <b>{{todo.name}}</b>
+</div>
+<div class='due_date'>
+    <b>Due:</b> {{ todo.due_date | get_due_date_string }}
+</div>
+</p>
+{% endfor %}
+</body>
+</html>
