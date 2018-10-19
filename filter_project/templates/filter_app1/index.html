@@ -1,23 +1,32 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>You Got Crap 2 Do</title>
+{% load static %}
+    <link rel="stylesheet" href="{% static 'filter_app1/bootstrap.css' %}">
+    <script src="{% static 'filter_app1/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'filter_app1/bootstrap.js' %}"></script>
 </head>
 <body>
-{% load app_filters %}
+<div class="container">
+    {% load app_filters %}
 
-
-<h1>Stuff I need To Do!</h1>
-{% for todo in todos %}
-<p>
-<div class='todo'>
-    <b>{{todo.name}}</b>
+    <div class="jumbotron">
+        <h1>Stuff I need To Do!</h1>
+    </div>
+    {% for todo in todos %}
+    <div style="{{ todo.due_date | change_of_color }}">
+    <p>
+    <div class='todo'>
+        <b>{{todo.name}}</b>
+    </div>
+    <div class='due_date'>
+        <b>Due:</b> {{ todo.due_date | get_due_date_string }}
+    </div>
+    </p>
+    </div>
+    {% endfor %}
 </div>
-<div class='due_date'>
-    <b>Due:</b> {{ todo.due_date | get_due_date_string }}
-</div>
-</p>
-{% endfor %}
 </body>
 </html>

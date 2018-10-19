@@ -20,3 +20,15 @@ def get_due_date_string(value):
         return "In %s days" % delta.days
 
 
+@register.filter(name='change_of_color')
+def change_of_color(value):
+    delta = value - date.today()
+
+    if delta.days == 0:
+        return "border: red solid thick"
+    elif delta.days < 1:
+        return "border: purple solid thick"
+    elif delta.days == 1:
+        return "border: green solid thick"
+    elif delta.days > 1:
+        return "border: yellow solid thick"
